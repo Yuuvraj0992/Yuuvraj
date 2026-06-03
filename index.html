@@ -46,6 +46,40 @@
     50%      { transform: translate(40px, -30px) scale(1.1); }
   }
 
+  /* page-load + scroll-in animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .anim {
+    opacity: 0;
+    animation: fadeUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+  .anim-1 { animation-delay: 0.05s; }
+  .anim-2 { animation-delay: 0.18s; }
+  .anim-3 { animation-delay: 0.32s; }
+  .anim-4 { animation-delay: 0.46s; }
+  .anim-5 { animation-delay: 0.62s; }
+  nav.anim { animation: fadeIn 1s ease forwards; }
+
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal.delay-1 { transition-delay: 0.1s; }
+  .reveal.delay-2 { transition-delay: 0.2s; }
+  .reveal.delay-3 { transition-delay: 0.3s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim, .reveal, nav.anim { opacity: 1 !important; transform: none !important; animation: none !important; }
+    .blob { animation: none !important; }
+  }
+
   /* nav */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -275,6 +309,21 @@
   }
   form button:hover { transform: translateY(-2px); }
   .form-note { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
+  .form-status {
+    margin-top: 8px; padding: 14px 18px; border-radius: 12px;
+    font-size: 0.95rem; display: none;
+  }
+  .form-status.show { display: block; }
+  .form-status.ok {
+    background: rgba(0, 224, 255, 0.12);
+    border: 1px solid rgba(0, 224, 255, 0.35);
+    color: var(--c3);
+  }
+  .form-status.err {
+    background: rgba(255, 46, 147, 0.12);
+    border: 1px solid rgba(255, 46, 147, 0.35);
+    color: var(--c1);
+  }
 
   /* socials + footer */
   .socials { display: flex; gap: 14px; justify-content: center; margin-top: 50px; flex-wrap: wrap; }
@@ -303,7 +352,7 @@
   <div class="blob c"></div>
 </div>
 
-<nav>
+<nav class="anim">
   <div class="logo">YUUVRAJ</div>
   <div class="nav-links">
     <a href="#work">Work</a>
@@ -313,15 +362,15 @@
 </nav>
 
 <header class="hero">
-  <span class="eyebrow">Video Editor &middot; Storyteller</span>
-  <h1>Cuts that <span class="grad">move</span>.<br/>Stories that <span class="grad">stick</span>.</h1>
-  <p class="tagline">I'm Yuuvraj — a video editor turning raw footage into bold, rhythmic stories for brands, creators, and films.</p>
-  <div class="cta-row">
+  <span class="eyebrow anim anim-1">Video Editor &middot; Storyteller</span>
+  <h1 class="anim anim-2">Cuts that <span class="grad">move</span>.<br/>Stories that <span class="grad">stick</span>.</h1>
+  <p class="tagline anim anim-3">I'm Yuuvraj — a video editor turning raw footage into bold, rhythmic stories for brands, creators, and films.</p>
+  <div class="cta-row anim anim-4">
     <a href="#showreel" class="btn btn-primary">See the reel →</a>
     <a href="#contact" class="btn btn-ghost">Start a project</a>
   </div>
 
-  <div class="reel" id="showreel">
+  <div class="reel anim anim-5" id="showreel">
     <div class="lite-yt" data-id="B1b5h0ylNCk" data-title="Showreel 2026">
       <div class="play">▶</div>
     </div>
@@ -329,11 +378,11 @@
 </header>
 
 <section id="work">
-  <h2 class="section-title">Selected Work</h2>
-  <p class="section-sub">A handful of recent edits across music videos, brand films, and short-form social.</p>
+  <h2 class="section-title reveal">Selected Work</h2>
+  <p class="section-sub reveal delay-1">A handful of recent edits across music videos, brand films, and short-form social.</p>
 
   <div class="grid">
-    <article class="card">
+    <article class="card reveal">
       <div class="thumb">
         <div class="lite-yt" data-id="naENtFPRELE" data-title="Project One"><div class="play">▶</div></div>
       </div>
@@ -344,7 +393,7 @@
       </div>
     </article>
 
-    <article class="card">
+    <article class="card reveal">
       <div class="thumb">
         <div class="lite-yt" data-id="ngrtuQdMA_M" data-title="Project Two" data-short="1"><div class="play">▶</div></div>
       </div>
@@ -355,7 +404,7 @@
       </div>
     </article>
 
-    <article class="card">
+    <article class="card reveal">
       <div class="thumb">
         <div class="lite-yt" data-id="bI5ZFROJsWw" data-title="Project Three"><div class="play">▶</div></div>
       </div>
@@ -366,7 +415,7 @@
       </div>
     </article>
 
-    <article class="card">
+    <article class="card reveal">
       <div class="thumb">
         <div class="lite-yt" data-id="zXd7udELJSs" data-title="Project Four"><div class="play">▶</div></div>
       </div>
@@ -377,7 +426,7 @@
       </div>
     </article>
 
-    <article class="card">
+    <article class="card reveal">
       <div class="thumb">
         <div class="lite-yt" data-id="PwyxlXkAKnw" data-title="Project Five"><div class="play">▶</div></div>
       </div>
@@ -388,7 +437,7 @@
       </div>
     </article>
 
-    <article class="card">
+    <article class="card reveal">
       <div class="thumb">
         <div class="lite-yt" data-id="q4ZvqpWEEUU" data-title="Project Six"><div class="play">▶</div></div>
       </div>
@@ -402,12 +451,12 @@
 </section>
 
 <section id="about">
-  <h2 class="section-title">About</h2>
-  <p class="section-sub">A bit about me and what I bring to the cutting room.</p>
+  <h2 class="section-title reveal">About</h2>
+  <p class="section-sub reveal delay-1">A bit about me and what I bring to the cutting room.</p>
 
   <div class="about-wrap">
-    <div class="about-img">Y</div>
-    <div class="about-text">
+    <div class="about-img reveal">Y</div>
+    <div class="about-text reveal delay-1">
       <p>Hey, I'm <strong>Yuuvraj</strong> — a video editor obsessed with pacing, rhythm, and the small choices that make a cut feel alive.</p>
       <p>I've worked with creators, agencies, and indie filmmakers to shape footage into stories that land. Whether it's a 15-second hook or a 15-minute doc, I care about the same thing: keeping viewers leaning in.</p>
       <p>When I'm not in DaVinci Resolve, you'll find me chasing color references, building sound libraries, and over-analyzing trailers frame by frame. I also lean on Claude to speed up the slow parts — scripting ideas, naming cuts, brainstorming structure — so more of my time goes into the craft.</p>
@@ -424,12 +473,13 @@
 
 <section id="contact">
   <div class="contact-wrap">
-    <h2 class="section-title" style="text-align:center;">Let's make something.</h2>
-    <p class="section-sub" style="margin: 0 auto 0; text-align:center;">Got a project, a rough cut, or just an idea? Send it over.</p>
+    <h2 class="section-title reveal" style="text-align:center;">Let's make something.</h2>
+    <p class="section-sub reveal delay-1" style="margin: 0 auto 0; text-align:center;">Got a project, a rough cut, or just an idea? Send it over.</p>
 
-    <form action="https://formsubmit.co/yuuvraj0992@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="New portfolio inquiry from yuuvraj.github.io" />
+    <form id="contact-form" class="reveal delay-2" action="https://formsubmit.co/yuuvraj0992@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New portfolio inquiry from yuuvraj0992.github.io" />
       <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="https://yuuvraj0992.github.io/Yuuvraj/" />
       <div class="field">
         <label for="name">Name</label>
         <input id="name" type="text" name="name" required placeholder="Your name" />
@@ -444,17 +494,15 @@
       </div>
       <button type="submit">Send message →</button>
       <p class="form-note">Or just email <a href="mailto:yuuvraj0992@gmail.com" style="color:var(--c3);">yuuvraj0992@gmail.com</a></p>
+      <div id="form-status" class="form-status" aria-live="polite"></div>
     </form>
 
     <div class="socials">
-      <a href="https://instagram.com/YOUR_HANDLE" class="social" aria-label="Instagram" target="_blank" rel="noopener">
+      <a href="https://www.instagram.com/ninjago_mc?igsh=dHhpaHh6cGlzcnZy" class="social" aria-label="Instagram" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
       </a>
-      <a href="https://youtube.com/@YOUR_HANDLE" class="social" aria-label="YouTube" target="_blank" rel="noopener">
+      <a href="https://www.youtube.com/@yuuvraj1" class="social" aria-label="YouTube" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.7-.47-5.47a2.78 2.78 0 0 0-2-2C18.75 4 12 4 12 4s-6.75 0-8.53.53a2.78 2.78 0 0 0-2 2C1 8.3 1 12 1 12s0 3.7.47 5.47a2.78 2.78 0 0 0 2 2C5.25 20 12 20 12 20s6.75 0 8.53-.53a2.78 2.78 0 0 0 2-2C23 15.7 23 12 23 12zM10 15.5v-7l6 3.5z"/></svg>
-      </a>
-      <a href="https://linkedin.com/in/YOUR_HANDLE" class="social" aria-label="LinkedIn" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.26 2.37 4.26 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .78 0 1.74v20.52C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg>
       </a>
       <a href="mailto:yuuvraj0992@gmail.com" class="social" aria-label="Email">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -469,6 +517,63 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Contact form — AJAX submit so user stays on the page
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      const origText = btn.textContent;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      status.className = 'form-status';
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/yuuvraj0992@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            name: form.name.value,
+            email: form.email.value,
+            message: form.message.value,
+            _subject: 'New portfolio inquiry from yuuvraj0992.github.io',
+            _captcha: 'false'
+          })
+        });
+        const data = await res.json();
+        if (data.success === 'true' || data.success === true) {
+          status.textContent = "Thanks — your message is on its way. I'll reply soon.";
+          status.classList.add('show', 'ok');
+          form.reset();
+        } else {
+          status.textContent = data.message || 'Hmm, something went wrong. Try emailing me directly.';
+          status.classList.add('show', 'err');
+        }
+      } catch (err) {
+        status.textContent = 'Network hiccup — try again, or email me directly.';
+        status.classList.add('show', 'err');
+      } finally {
+        btn.textContent = origText;
+        btn.disabled = false;
+      }
+    });
+  }
+
+  // Scroll-in reveal for sections
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          en.target.classList.add('in');
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
 
   // Lite YouTube embed — show thumbnail, swap to iframe on click
   document.querySelectorAll('.lite-yt').forEach(el => {
